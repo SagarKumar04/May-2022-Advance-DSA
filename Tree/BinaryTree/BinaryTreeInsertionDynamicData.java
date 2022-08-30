@@ -3,7 +3,7 @@ package Tree.BinaryTree;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BinaryTreeImplementationDynamicData {
+public class BinaryTreeInsertionDynamicData {
     Node rootNode;
 
     static class Node {
@@ -56,13 +56,13 @@ public class BinaryTreeImplementationDynamicData {
     }
 
     public static void main(String[] args) {
-        BinaryTreeImplementationDynamicData binaryTreeImplementationDynamicData
-                = new BinaryTreeImplementationDynamicData();
+        BinaryTreeInsertionDynamicData binaryTreeInsertionDynamicData
+                = new BinaryTreeInsertionDynamicData();
 
         for(int i = 0; i < 10; i++) {
             int randomNumber = (int)(Math.random() * 100); //range -> 0 to 99
 
-            binaryTreeImplementationDynamicData.insertNode(randomNumber);
+            binaryTreeInsertionDynamicData.insertNode(randomNumber);
         }
     }
 }
