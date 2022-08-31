@@ -1,4 +1,4 @@
-package Tree.BinaryTree;
+package Tree.BinaryTree.Traversal;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -19,6 +19,9 @@ public class LevelOrderTraversalIterative {
         }
     }
 
+    /*
+    Leetcode Link: https://leetcode.com/problems/binary-tree-level-order-traversal/
+     */
     private void storeTreeDataLevelWise() {
         Queue<Node> queue = new LinkedList<>();
         queue.add(rootNode);

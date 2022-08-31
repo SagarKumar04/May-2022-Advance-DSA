@@ -91,6 +91,36 @@ public class BinaryTreeDeletion {
         }
     }
 
+    private void deleteDeepestRightmostNode(Node deepestRightmostNode) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(rootNode);
+
+        Node temp;
+        while(!queue.isEmpty()) {
+            temp = queue.poll();
+
+            if (temp.rightChild != null) {
+                if (temp.rightChild == deepestRightmostNode) {
+                    temp.rightChild = null;
+                    return;
+                }
+                else {
+                    queue.add(temp.rightChild);
+                }
+            }
+
+            if(temp.leftChild != null) {
+                if(temp.leftChild == deepestRightmostNode) {
+                    temp.leftChild = null;
+                    return;
+                }
+                else {
+                    queue.add(temp.leftChild);
+                }
+            }
+        }
+    }
+
     private void deleteNode(int data) {
         if(rootNode == null) {
             return;
@@ -128,6 +158,7 @@ public class BinaryTreeDeletion {
         if(deleteNode != null) {
             int lastNodeData = temp.data;
             //delete 'temp'
+            deleteDeepestRightmostNode(temp);
             deleteNode.data = lastNodeData;
         }
     }
@@ -136,10 +167,20 @@ public class BinaryTreeDeletion {
         BinaryTreeDeletion binaryTreeDeletion
                 = new BinaryTreeDeletion();
 
+        List<Integer> nodeDataList = new ArrayList<>();
         for(int i = 0; i < 10; i++) {
             int randomNumber = (int)(Math.random() * 100); //range -> 0 to 99
 
+            nodeDataList.add(randomNumber);
+
             binaryTreeDeletion.insertNode(randomNumber);
         }
+        System.out.println("Current Tree: ");
+        binaryTreeDeletion.storeTreeDataLevelWise();
+        System.out.println();
+
+        System.out.println("Node to be deleted: " + nodeDataList.get(3));
+        binaryTreeDeletion.deleteNode(nodeDataList.get(3));
+        binaryTreeDeletion.storeTreeDataLevelWise();
     }
 }
