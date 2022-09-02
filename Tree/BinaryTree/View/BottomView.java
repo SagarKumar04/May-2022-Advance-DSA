@@ -2,7 +2,7 @@ package Tree.BinaryTree.View;
 
 import java.util.*;
 
-public class TopView {
+public class BottomView {
     Node rootNode;
 
     static class Node {
@@ -60,8 +60,8 @@ public class TopView {
         }
     }
 
-    private List<Integer> getTopView() {
-        List<Integer> topView = new ArrayList<>();
+    private List<Integer> getBottomView() {
+        List<Integer> bottomView = new ArrayList<>();
 
         if(rootNode != null) {
             Map<Integer, Integer> levelMap = new TreeMap<>();
@@ -74,9 +74,7 @@ public class TopView {
                 int levelNumber = currentPair.levelNumber;
                 Node currentNode = currentPair.currentNode;
 
-                if(levelMap.get(levelNumber) == null) {
-                    levelMap.put(levelNumber, currentNode.data);
-                }
+                levelMap.put(levelNumber, currentNode.data);
 
                 if(currentNode.leftChild != null) {
                     queue.add(new Pair(levelNumber - 1, currentNode.leftChild));
@@ -90,24 +88,24 @@ public class TopView {
             System.out.println("Level Map: " + levelMap);
 
             for(Map.Entry<Integer, Integer> entry : levelMap.entrySet()) {
-                topView.add(entry.getValue());
+                bottomView.add(entry.getValue());
             }
         }
 
-        return topView;
+        return bottomView;
     }
 
     public static void main(String[] args) {
-        TopView topView = new TopView();
-        
+        BottomView bottomView = new BottomView();
+
         for(int i = 0; i < 10; i++) {
             int randomNumber = (int)(Math.random() * 100); //range -> 0 to 99
 
             System.out.println("Inserting " + randomNumber + "...");
-            topView.insertNode(randomNumber);
+            bottomView.insertNode(randomNumber);
         }
 
-        List<Integer> topViewList = topView.getTopView();
-        System.out.println("Top View: " + topViewList);
+        List<Integer> bottomViewList = bottomView.getBottomView();
+        System.out.println("Bottom View: " + bottomViewList);
     }
 }
