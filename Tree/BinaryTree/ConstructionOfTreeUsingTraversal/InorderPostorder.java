@@ -61,7 +61,12 @@ public class InorderPostorder {
         int inorderIndex = searchInInorder(inorder, inorderStart, inorderEnd, currentRootNodeData);
 
         currentRootNode.rightChild = buildTreeUsingInorderAndPostorder(inorder, postorder,
-                inorderIndex + 1, inorderEnd, , postorderEnd - 1);
+                inorderIndex + 1, inorderEnd, postorderEnd - inorderEnd + inorderIndex, postorderEnd - 1);
+
+        currentRootNode.leftChild = buildTreeUsingInorderAndPostorder(inorder, postorder,
+                inorderStart, inorderIndex - 1, postorderStart, postorderStart - inorderStart + inorderIndex - 1);
+
+        return currentRootNode;
     }
     
     public static void main(String[] args) {
