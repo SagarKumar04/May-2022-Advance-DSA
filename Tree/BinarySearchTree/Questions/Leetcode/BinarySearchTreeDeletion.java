@@ -60,10 +60,20 @@ public class BinarySearchTreeDeletion {
         }
 
         if(deleteNode < currentNode.data) {
-            deleteNodeHelper(currentNode.leftChild, deleteNode);
+            /*
+            The code was not working as expected because the return value of the
+            deleteNodeHelper() method was not being initialized to the variable
+            leftChild of currentNode
+             */
+            currentNode.leftChild = deleteNodeHelper(currentNode.leftChild, deleteNode);
         }
         else if(deleteNode > currentNode.data) {
-            deleteNodeHelper(currentNode.rightChild, deleteNode);
+            /*
+            The code was not working as expected because the return value of the
+            deleteNodeHelper() method was not being initialized to the variable
+            rightChild of currentNode
+             */
+            currentNode.rightChild = deleteNodeHelper(currentNode.rightChild, deleteNode);
         }
         else {
             if(currentNode.leftChild == null) {
