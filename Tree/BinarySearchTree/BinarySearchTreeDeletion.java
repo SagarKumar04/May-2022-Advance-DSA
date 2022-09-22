@@ -1,6 +1,4 @@
-package Tree.BinarySearchTree.Questions.Leetcode;
-
-import Tree.BinarySearchTree.BinarySearchTreeSearching;
+package Tree.BinarySearchTree;
 
 import java.util.Scanner;
 
@@ -106,7 +104,7 @@ public class BinarySearchTreeDeletion {
         int numberOfNodes = 10;
 
         for(int i = 1; i <= numberOfNodes; i++) {
-            int data = (int)((Math.random() * 100) + 10);
+            int data = (int)((Math.random() * 15) + 10);
 
             System.out.println("Inserting " + data + "...");
             binarySearchTreeDeletion.rootNode = binarySearchTreeDeletion.insertNode(binarySearchTreeDeletion.rootNode,data);
