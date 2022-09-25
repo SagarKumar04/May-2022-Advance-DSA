@@ -1,7 +1,5 @@
 package Tree.BinarySearchTree.Questions;
 
-import Tree.BinarySearchTree.Questions.NewtonSchool.CeilInBST;
-
 import java.util.Scanner;
 
 public class FloorInBST {

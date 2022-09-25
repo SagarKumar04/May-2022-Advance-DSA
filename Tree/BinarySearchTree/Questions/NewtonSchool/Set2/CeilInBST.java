@@ -1,4 +1,4 @@
-package Tree.BinarySearchTree.Questions.NewtonSchool;
+package Tree.BinarySearchTree.Questions.NewtonSchool.Set2;
 
 import java.util.Scanner;
 
