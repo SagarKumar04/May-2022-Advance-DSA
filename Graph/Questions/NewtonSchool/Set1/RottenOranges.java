@@ -1,13 +1,10 @@
-/*
-Leetcode Link: https://leetcode.com/problems/rotting-oranges/
- */
-
-package Graph.Questions.Leetcode;
+package Graph.Questions.NewtonSchool.Set1;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
-public class RottingOranges {
+public class RottenOranges {
     class Coordinates {
         int x;
         int y;
@@ -82,5 +79,24 @@ public class RottingOranges {
         numberOfMinutes--;
 
         return (freshOrangeCount == 0) ? numberOfMinutes : -1;
+    }
+    
+    public static void main(String[] args) {
+        RottenOranges rottenOranges = new RottenOranges();
+        Scanner scanner = new Scanner(System.in);
+
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+
+        int graph[][] = new int[n][m];
+
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                graph[i][j] = scanner.nextInt();
+            }
+        }
+
+        int numberOfMinutes = rottenOranges.orangesRotting(graph);
+        System.out.println(numberOfMinutes);
     }
 }
