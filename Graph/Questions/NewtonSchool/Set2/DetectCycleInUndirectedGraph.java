@@ -35,6 +35,19 @@ public class DetectCycleInUndirectedGraph {
                     return true;
                 }
             }
+            /*
+            The code we discussed in the class was failing a few test cases on Newton School
+            playground because of this statement:
+            else if(eachNeighbour != parentNode) {
+
+            The problem with the above statement is that both 'eachNeighbour' and 'parentNode'
+            are of 'Object' type. Comparing two objects with an '==' (equality) operator
+            checks whether both the references refer to the same object or not.
+            Hence, the above comparison resulted in a 'true' when the values of both the
+            objects were same.
+            To correct the mistake, each object can be type casted to 'Integer' and their
+            corresponding 'int' values can be taken for comparison.
+             */
             else if(((Integer)eachNeighbour).intValue() != ((Integer)parentNode).intValue()) {
                 return true;
             }
