@@ -4,7 +4,7 @@ Leetcode Link: https://leetcode.com/problems/unique-paths/
 
 package DynamicProgramming.Leetcode;
 
-public class UniquePaths {
+public class UniquePathsWith2DArray {
     public int uniquePaths(int m, int n) {
         int pathDp[][] = new int[m][n];
 
