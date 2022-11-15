@@ -4,7 +4,7 @@ Leetcode Link: https://leetcode.com/problems/distinct-subsequences-ii/
 
 /*
 The code is not passing just one test-case now.
-I will check and update the code
+I will check and update the code.
  */
 
 package DynamicProgramming.Leetcode;
@@ -48,11 +48,23 @@ public class DistinctSubsequencesII {
                 it small, whereas 'duplicateCount' may be a small positive number and hence,
                 'mod' won't affect the value
                 This will make '(currentCount % mod) - (duplicateCount % mod)' a negative number
-                 */
+
+                There's another problem here.
+                The above statement:
                 distinctSubsequenceCount[i] = (currentCount - duplicateCount + mod) % mod;
+
+                will cause problem in the last test-case, where the input is:
+                yezruvnatuipjeohsymapyxgfeczkevoxipckunlqjauvllfpwezhlzpbkfqazhexabomnlxkmoufneninbxxguuktvupmpfspwxiouwlfalexmluwcsbeqrzkivrphtpcoxqsueuxsalopbsgkzaibkpfmsztkwommkvgjjdvvggnvtlwrllcafhfocprnrzfoyehqhrvhpbbpxpsvomdpmksojckgkgkycoynbldkbnrlujegxotgmeyknpmpgajbgwmfftuphfzrywarqkpkfnwtzgdkdcyvwkqawwyjuskpvqomfchnlojmeltlwvqomucipcwxkgsktjxpwhujaexhejeflpctmjpuguslmzvpykbldcbxqnwgycpfccgeychkxfopixijeypzyryglutxweffyrqtkfrqlhtjweodttchnugybsmacpgperznunffrdavyqgilqlplebbkdopyyxcoamfxhpmdyrtutfxsejkwiyvdwggyhgsdpfxpznrccwdupfzlubkhppmasdbqfzttbhfismeamenyukzqoupbzxashwuvfkmkosgevcjnlpfgxgzumktsexvwhylhiupwfwyxotwnxodttsrifgzkkedurayjgxlhxjzlxikcgerptpufocymfrkyayvklsalgmtifpiczwnozmgowzchjiop
+
+                That's because for the last iteration, the value of currentCount - duplicateCount + mod
+                will become a multiple of 10^9 + 7.
+                Hence, we will avoid adding mod here and change the statement to:
+                distinctSubsequenceCount[i] = (currentCount - duplicateCount) % mod;
+                 */
+                distinctSubsequenceCount[i] = (currentCount - duplicateCount) % mod;
             }
             else {
-                distinctSubsequenceCount[i] = currentCount;
+                distinctSubsequenceCount[i] = currentCount % mod;
             }
 
             /*
@@ -70,6 +82,23 @@ public class DistinctSubsequencesII {
             lastOccurrence[index] = i - 1;
         }
 
-        return distinctSubsequenceCount[length] - 1;
+        /*
+        Mistake 4 (due to which the last test case won't pass):
+        If the value at 'distinctSubsequenceCount[length]' is a multiple of 'mod',
+        then going for a '%' operation and subtracting will result in -1. That's because:
+        distinctSubsequenceCount[length] % mod = 0
+        and then, distinctSubsequenceCount[length] - 1 = -1
+
+        Hence, we first go for a -1 first (to avoid empty string), then adding mod if and only if
+        the answer is negative
+         */
+
+        distinctSubsequenceCount[length]--;
+
+        if (distinctSubsequenceCount[length] < 0) {
+            distinctSubsequenceCount[length] += mod;
+        }
+
+        return distinctSubsequenceCount[length];
     }
 }
